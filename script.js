@@ -1,3 +1,28 @@
+// Google Sheets Tracking
+const SHEET_URL = "https://script.google.com/macros/s/AKfycbx5Hc1cE5qTwJHoSXaVhEfD6K2BJBLS5KQIMGv9dH0Ip5UOZSSnud-m-otXlq5PYW5I/exec";
+
+let currentName = "";
+let noCount = 0;
+let yesCount = 0;
+let startTime = null;
+
+function trackAction(action) {
+  if (action === "no") noCount++;
+  if (action === "yes") yesCount++;
+}
+
+function sendToSheet() {
+  const durationSecs = startTime ? Math.round((new Date() - startTime) / 1000) : 0;
+  const params = new URLSearchParams({
+    name: currentName,
+    noCount: noCount,
+    yesCount: yesCount,
+    duration: durationSecs,
+  });
+  fetch(`${SHEET_URL}?${params}`, { mode: "no-cors" })
+    .catch(err => console.log("Tracking error:", err));
+}
+
 // Elements
 const yesBtn = document.querySelector(".yes-button");
 const noBtn = document.querySelector(".no-button");
@@ -37,6 +62,8 @@ function checkName() {
   const name = nameInput.value.trim();
 
   if (validNames.includes(name)) {
+    currentName = name;
+    startTime = new Date();
     lockScreen.style.display = "none";
     mainApp.style.display = "";
     if (musicOn) playMusic();
@@ -108,10 +135,11 @@ noBtn.addEventListener("click", () => {
     text.innerText = stepsData[step].text;
     img.style.backgroundImage = `url(${stepsData[step].image})`;
     step++;
+    trackAction("no");
   } else {
     // End of a loop — increase multiplier and check exit
     if (multiplier >= 1000) {
-      text.innerText = "Thôi bye bạn rồi 😭💔";
+      text.innerText = "Tạm biệt 😭💔";
       img.style.backgroundImage = "url(assets/cry.gif)";
       yesBtn.style.display = "none";
       noBtn.style.display = "none";
@@ -153,6 +181,8 @@ noBtn.addEventListener("touchstart", moveNoButton);
 yesBtn.addEventListener("click", acceptLove);
 
 function acceptLove() {
+  trackAction("yes");
+  sendToSheet();
   text.innerText = "Tui biết bé sẽ đồng ý mà ❤️";
   img.style.backgroundImage = "url(assets/thanks.gif)";
 
