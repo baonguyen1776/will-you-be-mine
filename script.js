@@ -56,7 +56,7 @@ let heartsStarted = false;
 let loopCount = 1;
 let multiplier = 4;
 
-const validNames = ["Thủy", "thủy", "thỉ", "Thỉ", "thuyzan", "tzan", "Thuyzan", "Tzan"];
+const validNames = ["Thủy", "thủy", "thỉ", "Thỉ", "thuyzan", "tzan", "Thuyzan", "Tzan", "thuỷ", "Thuỷ"];
 
 function checkName() {
   const name = nameInput.value.trim();
