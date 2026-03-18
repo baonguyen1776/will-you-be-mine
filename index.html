@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Làm người yêu tớ nhá ❤️</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <button id="music" aria-label="Toggle music"> 🎵 </button>
+
+    <button id="theme" aria-label="Change theme"> 🎨 </button>
+
+    <div class="container">
+        <div class="card" id="card">
+            <div class="image" id="img"></div>
+            <p class="question" id="text">
+                Làm người yêu tớ nha! ❤️
+            </p>
+            <div class="buttons">
+                <button class="yes-button">Đồng ý</button>
+                <button class="no-button">Không</button>
+            </div>
+
+            <button id="gift">💝 Ấn vào đây nè</button>
+
+            <div class="gift-cover" id="cover">
+                <span>Ấn tab để mở 🎀</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="popup" id="popup" role="dialog" aria-modal="true">
+        <div class="popup-box">
+            <span class="popup-heart">💖</span>
+            <h2>Cho riêng em 💕</h2>
+
+            <p class="popup-text">
+                abc
+                xyz
+                dree
+            </p>
+
+            <div class="popup-actions">
+                <button id="close-popup">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <audio id="bg-music" loop>
+        <source src="assets/bg-love-music.mp3" type="audio/mpeg" />
+    </audio>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
